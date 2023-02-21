@@ -34,6 +34,8 @@ public class UserRepositoryTest {
 
         // then
         assertThat(userList.get(0).getUsername()).isEqualTo("ssar");
+        assertThat(userList.get(0).getEmail()).isEqualTo("ssar@nate.com");
+        assertThat(userList.get(1).getUsername()).isEqualTo("love");
     }
 
     @Test

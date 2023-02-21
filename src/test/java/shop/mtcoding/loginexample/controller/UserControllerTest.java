@@ -53,7 +53,6 @@ public class UserControllerTest {
 
     @Test
     public void join_test() throws Exception {
-        System.out.print("테스트 : join_test()");
         // given
         // String requestBody = "password=1234&email=ssar@nate.com";
         // String requestBody = "username=cos&email=ssar@nate.com";
