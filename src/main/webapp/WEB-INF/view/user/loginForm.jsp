@@ -12,7 +12,17 @@
         </head>
 
         <body>
-            gggggg
+            <form action="/login" method="post">
+                <div>
+                    <input type="text" name="username" placeholder="Enter username" id="username">
+                </div>
+
+                <div>
+                    <input type="password" name="password" placeholder="Enter password" id="password">
+                </div>
+
+                <button type="submit" class="btn btn-primary">로그인</button>
+            </form>
         </body>
 
         </html>
