@@ -76,7 +76,7 @@ public class UserController {
     }
 
     @GetMapping({ "/" })
-    public String mainScreen(Model model) {
+    public String mainScreen() {
 
         return "user/mainScreen";
     }
