@@ -9,6 +9,7 @@ import shop.mtcoding.loginexample.dto.user.UserReq.LoginReqDto;
 import shop.mtcoding.loginexample.handler.ex.CustomException;
 import shop.mtcoding.loginexample.model.User;
 import shop.mtcoding.loginexample.model.UserRepository;
+import shop.mtcoding.loginexample.util.EncryptionUtils;
 
 @Service
 public class UserService {
@@ -19,6 +20,7 @@ public class UserService {
     @Transactional
     public void 회원가입(JoinReqDto joinReqDto) {
         User sameUser = userRepository.findByUsername(joinReqDto.getUsername());
+
         if (sameUser != null) {
             throw new CustomException("동일한 username이 존재합니다");
         }

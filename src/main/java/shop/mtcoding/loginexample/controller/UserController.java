@@ -12,6 +12,7 @@ import shop.mtcoding.loginexample.dto.user.UserReq.LoginReqDto;
 import shop.mtcoding.loginexample.handler.ex.CustomException;
 import shop.mtcoding.loginexample.model.User;
 import shop.mtcoding.loginexample.service.UserService;
+import shop.mtcoding.loginexample.util.EncryptionUtils;
 
 @Controller
 public class UserController {
@@ -35,6 +36,10 @@ public class UserController {
         if (loginReqDto.getPassword() == null || loginReqDto.getPassword().isEmpty()) {
             throw new CustomException("password를 작성해주세요");
         }
+
+        String password = EncryptionUtils.encryptSHA256(loginReqDto.getPassword());
+        loginReqDto.setPassword(password);
+
         User principal = userService.로그인(loginReqDto);
 
         session.setAttribute("principal", principal);
@@ -60,6 +65,8 @@ public class UserController {
         if (joinReqDto.getEmail() == null || joinReqDto.getEmail().isEmpty()) {
             throw new CustomException("email을 작성해주세요");
         }
+        String password = EncryptionUtils.encryptSHA256(joinReqDto.getPassword());
+        joinReqDto.setPassword(password);
         userService.회원가입(joinReqDto);
 
         return "redirect:/loginForm";
