@@ -17,6 +17,7 @@ import shop.mtcoding.loginexample.service.UserService;
 import shop.mtcoding.loginexample.util.EncryptionUtils;
 
 @Controller
+@RequestMapping("/")
 public class UserController {
 
     @Autowired
@@ -75,7 +76,6 @@ public class UserController {
     }
 
     @GetMapping({ "/" })
-    @RequestMapping("/")
     public String mainScreen(Model model) {
 
         return "user/mainScreen";
