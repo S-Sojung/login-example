@@ -4,8 +4,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import shop.mtcoding.loginexample.dto.user.UserReq.JoinReqDto;
 import shop.mtcoding.loginexample.dto.user.UserReq.LoginReqDto;
@@ -37,7 +39,7 @@ public class UserController {
             throw new CustomException("password를 작성해주세요");
         }
 
-        String password = EncryptionUtils.encryptSHA256(loginReqDto.getPassword());
+        String password = EncryptionUtils.encrypt(loginReqDto.getPassword());
         loginReqDto.setPassword(password);
 
         User principal = userService.로그인(loginReqDto);
@@ -65,10 +67,17 @@ public class UserController {
         if (joinReqDto.getEmail() == null || joinReqDto.getEmail().isEmpty()) {
             throw new CustomException("email을 작성해주세요");
         }
-        String password = EncryptionUtils.encryptSHA256(joinReqDto.getPassword());
+        String password = EncryptionUtils.encrypt(joinReqDto.getPassword());
         joinReqDto.setPassword(password);
         userService.회원가입(joinReqDto);
 
         return "redirect:/loginForm";
+    }
+
+    @GetMapping({ "/" })
+    @RequestMapping("/")
+    public String mainScreen(Model model) {
+
+        return "user/mainScreen";
     }
 }

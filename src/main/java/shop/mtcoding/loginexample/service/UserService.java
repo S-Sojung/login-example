@@ -9,7 +9,6 @@ import shop.mtcoding.loginexample.dto.user.UserReq.LoginReqDto;
 import shop.mtcoding.loginexample.handler.ex.CustomException;
 import shop.mtcoding.loginexample.model.User;
 import shop.mtcoding.loginexample.model.UserRepository;
-import shop.mtcoding.loginexample.util.EncryptionUtils;
 
 @Service
 public class UserService {

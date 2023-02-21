@@ -4,17 +4,9 @@ import java.security.MessageDigest;
 
 public class EncryptionUtils {
 
-    public static String encryptSHA256(String s) {
-        return encrypt(s, "SHA-256");
-    }
-
-    public static String encryptMD5(String s) {
-        return encrypt(s, "MD5");
-    }
-
-    public static String encrypt(String s, String messageDigest) {
+    public static String encrypt(String s) {
         try {
-            MessageDigest md = MessageDigest.getInstance(messageDigest);
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
             byte[] passBytes = s.getBytes();
             md.reset();
             byte[] digested = md.digest(passBytes);
